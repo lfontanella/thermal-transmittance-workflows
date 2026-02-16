@@ -1,0 +1,752 @@
+<ids:ids xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS http://standards.buildingsmart.org/IDS/1.0/ids.xsd" xmlns:ids="http://standards.buildingsmart.org/IDS">
+  <!--edited with usBIM.IDSeditor 2.3.20.0 (http://www.accasoftware.com)-->
+  <ids:info>
+    <ids:title>Energy analysis information requirements</ids:title>
+    <ids:copyright>LFO</ids:copyright>
+    <ids:version>0.1</ids:version>
+    <ids:description>Information requirements necessary for preparing the IFC model for the purposes of a preliminary energy analysis.</ids:description>
+    <ids:author>lfontanella@iuav.it</ids:author>
+    <ids:date>2024-03-01</ids:date>
+    <ids:purpose>Preparation of IFC model for energy analysis</ids:purpose>
+  </ids:info>
+  <ids:specifications>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Types Of Building" identifier="ToB.01" description="Buildings are classified according to their intended use into the categories set out in Article 3 of Presidential Decree 412/93:&#xA;- E.1 Buildings used as residences and similar&#xA;- E.2 Buildings used as offices and similar&#xA;- E.3 Buildings used as hospitals, clinics or nursing homes and similar&#xA;- E.4 Buildings used for recreational, associative or religious activities and similar&#xA;- E.5 Buildings used for commercial activities and similar&#xA;- E.6 Buildings used for sporting activities&#xA;- E.7 Buildings used for educational activities at all levels and similar&#xA;- E.8 Buildings used for industrial and craft activities and similar" instructions="Enter the shared parameter &quot;TypesOfBuilding&quot; in the &quot;Project Information&quot; section - Data.&#xA;Indicate the type of building from among those provided.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:property dataType="IFCTEXT">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>TypesOfBuilding</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="E.1 Edifici adibiti a residenza e assimilabili" />
+              <xs:enumeration value="E.2 Edifici adibiti a uffici e assimilabili" />
+              <xs:enumeration value="E.3 Edifici adibiti a ospedali, cliniche o case di cura e assimilabili" />
+              <xs:enumeration value="E.4 Edifici adibiti ad attività ricreative, associative o di culto e assimilabili" />
+              <xs:enumeration value="E.5 Edifici adibiti ad attività commerciali e assimilabili" />
+              <xs:enumeration value="E.6 Edifici adibiti ad attività sportive" />
+              <xs:enumeration value="E.7 Edifici adibiti ad attività scolastiche a tutti i livelli e assimilabili" />
+              <xs:enumeration value="E.8 Edifici adibiti ad attività industriali ed artigianali e assimilabili" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:applicability>
+      <ids:requirements />
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Types Of Intervention" identifier="ToI.01" description="The types of interventions envisaged (Ministerial Decree of 26 June 2015 – Minimum Requirements Decree) are:&#xA;- New construction&#xA;- Demolition and reconstruction&#xA;- Extension and elevation&#xA;- Major renovation of level I&#xA;- Major renovation of level II&#xA;- Energy redevelopment" instructions="Enter the shared parameter &quot;TypesOfIntervention&quot; in the &quot;Project Information&quot; section - Data.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:property dataType="IFCTEXT">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>TypesOfIntervention</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Nuova costruzione" />
+              <xs:enumeration value="Demolizione e ricostruzione" />
+              <xs:enumeration value="Ampliamento" />
+              <xs:enumeration value="Ristrutturazione importante di I livello" />
+              <xs:enumeration value="Ristrutturazione importante di II livello" />
+              <xs:enumeration value="Riqualificazione energetica" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:applicability>
+      <ids:requirements />
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Geolocalization" identifier="Geo.01" description="Correctly orienting the building with respect to true north is necessary to obtain accurate analyses of the sun's path and shading.&#xA;Verify that the exported IFC file maintains the true north orientation and not the design orientation." instructions="- Geolocate the intervention (Latitude/Longitude).&#xA;- Enter the project address (Project Information - Other - Project Address).&#xA;- Set the orientation (True North).">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:attribute>
+          <ids:name>
+            <ids:simpleValue>RefLatitude</ids:simpleValue>
+          </ids:name>
+        </ids:attribute>
+        <ids:attribute>
+          <ids:name>
+            <ids:simpleValue>RefLongitude</ids:simpleValue>
+          </ids:name>
+        </ids:attribute>
+        <ids:property dataType="IFCTEXT">
+          <ids:propertySet>
+            <ids:simpleValue>Altro</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Indirizzo del progetto</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:applicability>
+      <ids:requirements />
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Climate Zone" identifier="CZ.01" description="Presidential Decree 412/93 establishes the intended use of buildings and divides Italy into six climate zones, from A to F, based on the criterion of degree days. These criteria are fundamental for the design of air conditioning systems and the definition of the period of operation and duration.&#xA;The “degree day” of a location is the sum, extended to all days of a conventional annual heating period, of only the positive daily differences between the ambient temperature, conventionally set at 20°C, and the average daily outdoor temperature.&#xA;- Zone A: municipalities with degree days below 600&#xA;- Zone B: municipalities with degree days between 600 and 900&#xA;- Zone C: municipalities with degree days between 900 and 1.400&#xA;- Zone D: municipalities with degree days between 1.400 and 2.100&#xA;- Zone E: municipalities with degree days between 2.100 and 3.000&#xA;- Zone F: municipalities with degree days above 3.000" instructions="Enter the shared parameter &quot;ClimateZone&quot; in the &quot;Project Information&quot; section - Energy Analysis.&#xA;Indicate the letter (A-F) corresponding to the climate zone in question.&#xA;">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:property dataType="IFCTEXT">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>ClimateZone</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="A" />
+              <xs:enumeration value="B" />
+              <xs:enumeration value="C" />
+              <xs:enumeration value="D" />
+              <xs:enumeration value="E" />
+              <xs:enumeration value="F" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:applicability>
+      <ids:requirements />
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Shading" identifier="SD.01" description="Modelling the context, including all objects that cast shadows on the building in question, is necessary for a correct energy assessment." instructions="Export generic models representing the context (buildings, clearances, etc.) as IfcVirtualElement.Clearance.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCVIRTUALELEMENT</ids:simpleValue>
+          </ids:name>
+          <ids:predefinedType>
+            <ids:simpleValue>CLEARANCE</ids:simpleValue>
+          </ids:predefinedType>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements />
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Heated Room" identifier="HR.01" description="The types of air conditioning provided are:&#xA;- Heating&#xA;- Cooling&#xA;- Heating and cooling&#xA;- No air conditioning&#xA;- Ventilation&#xA;- Natural ventilation only" instructions="During modelling, associate the rooms (IFCSPACE) with their respective environments and indicate the relevant type of air conditioning from among those listed.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSPACE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCIDENTIFIER" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Tipo di climatizzazione</ids:simpleValue>
+          </ids:baseName>
+          <ids:value>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Riscaldamento" />
+              <xs:enumeration value="Raffreddamento" />
+              <xs:enumeration value="Riscaldamento e raffreddamento" />
+              <xs:enumeration value="Senza climatizzazione" />
+              <xs:enumeration value="Ventilazione" />
+              <xs:enumeration value="Soltanto ventilazione naturale" />
+            </xs:restriction>
+          </ids:value>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="External Wall" identifier="WL.01" description="For the purposes of energy analysis, it is necessary to identify which walls separate heated rooms from unheated rooms or the outside.&#xA;Once these elements have been identified, they must be verified on the basis of the limits imposed by Ministerial Decree 26.06.2015 &quot;Minimum requirements for buildings&quot;, which vary according to the climate zone." instructions="Enter the shared parameter &quot;External-UnheatedRoom&quot; in the &quot;Energy Analysis&quot; section relating to walls.&#xA;Indicate (True or False) whether the selected wall instance separates the heated environment from an unheated environment or the exterior.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCWALL</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>External-UnheatedRoom</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="External Wall-Thermal Transmittance" identifier="WL.TT" description="Thermal transmittance of the element, to be verified against the limit values imposed by the decree on minimum building requirements." instructions="Verify that the transmittance value of the element is specified in the proprietary software.&#xA;N.B. The thermal transmittance calculated by the proprietary software is incorrect as it does not take into account the internal &quot;Rsi&quot; and external &quot;Rse&quot; surface resistances of the elements. &#xA;These vary depending on the direction of the heat flow (in the case of masonry, Rsi = 0.13 m²K/W and Rse = 0.04 m²K/W) and contribute to the total resistance Rt, which defines the correct transmittance.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCWALL</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Pset_WallCommon</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>ThermalTransmittance</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="External Floor" identifier="FL.01" description="For the purposes of energy analysis, it is necessary to identify which floors separate heated rooms from unheated rooms or the outside.&#xA;Once these elements have been identified, they must be verified on the basis of the limits imposed by Ministerial Decree 26.06.2015 &quot;Minimum requirements for buildings&quot;, which vary according to the climate zone." instructions="Enter the shared parameter &quot;External-UnheatedRoom&quot; in the &quot;Energy Analysis&quot; section relating to floors.&#xA;Indicate (True or False) whether the selected floor instance separates the heated environment from an unheated environment or the exterior.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSLAB</ids:simpleValue>
+          </ids:name>
+          <ids:predefinedType>
+            <ids:simpleValue>FLOOR</ids:simpleValue>
+          </ids:predefinedType>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>External-UnheatedRoom</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="External Floor-Thermal Transmittance" identifier="FL.TT" description="Thermal transmittance of the element, to be verified against the limit values imposed by the decree on minimum building requirements." instructions="Verify that the transmittance value of the element is specified within the proprietary software.&#xA;N.B. The thermal transmittance calculated by the proprietary software is incorrect as it does not take into account the internal “Rsi” and external “Rse” surface resistances of the elements. &#xA;These vary depending on the direction of the heat flow (in the case of floors against the ground, Rsi = 0.17 m²K/W and Rse = 0.04 m²K/W) and contribute to the total resistance Rt, which defines the correct transmittance.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSLAB</ids:simpleValue>
+          </ids:name>
+          <ids:predefinedType>
+            <ids:simpleValue>FLOOR</ids:simpleValue>
+          </ids:predefinedType>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Pset_SlabCommon</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>ThermalTransmittance</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="External Roof" identifier="RF.01" description="For the purposes of energy analysis, it is necessary to identify which roofs separate heated rooms from unheated rooms or the outside.&#xA;Once these elements have been identified, they must be verified on the basis of the limits imposed by Ministerial Decree 26.06.2015 “Minimum requirements for buildings,” which vary according to the climate zone." instructions="Enter the shared parameter “External-UnheatedRoom” in the “Energy Analysis” section relating to roofs.&#xA;Indicate (True or False) whether the selected roof instance separates the heated environment from an unheated environment or the outside.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSLAB</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>External-UnheatedRoom</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="External Roof-Thermal Transmittance" identifier="RF.TT" description="Thermal transmittance of the element, to be verified against the limit values imposed by the decree on minimum building requirements." instructions="Verify that the transmittance value of the element is specified within the proprietary software.&#xA;N.B. The thermal transmittance calculated by the proprietary software is incorrect as it does not take into account the internal “Rsi” and external “Rse” surface resistances of the elements. &#xA;These vary depending on the direction of the heat flow (in the case of roofs, Rsi = 0.10 m²K/W and Rse = 0.04 m²K/W) and contribute to the total resistance Rt, which defines the correct transmittance.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSLAB</ids:simpleValue>
+          </ids:name>
+          <ids:predefinedType>
+            <ids:simpleValue>ROOF</ids:simpleValue>
+          </ids:predefinedType>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Pset_SlabCommon</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>ThermalTransmittance</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="External Window" identifier="WN.01" description="For the purposes of energy analysis, it is necessary to identify which windows and doors separate heated rooms from unheated rooms or the outside.&#xA;Once these elements have been identified, they must be checked against the limits imposed by Ministerial Decree 26.06.2015 “Minimum requirements for buildings,” which vary depending on the climate zone." instructions="Enter the shared parameter “External-UnheatedRoom” in the “Energy Analysis” section for windows.&#xA;Indicate (True or False) whether the selected window instance separates the heated environment from an unheated environment or the outside.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCWINDOW</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>External-UnheatedRoom</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="External Window-Thermal Transmittance" identifier="WN.TT" description="Thermal transmittance of the element, to be verified against the limit values imposed by the decree on minimum building requirements." instructions="Verify that the transmittance value of the element is specified within the proprietary software.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCWINDOW</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Pset_WindowCommon</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>ThermalTransmittance</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Building Use Methods" identifier="Bme.01" description="Understanding how the building is used is necessary in order to draw up a correct energy analysis.&#xA;The specific characteristics of each individual room are defined with the rooms, which are then grouped into Zones based on the type of system." instructions="Classify spaces (IFCSPACE) with the predefined type “.SPACE” in order to distinguish them from rooms, which are also exported as IFCSPACE.&#xA;For each space, indicate its intended use and related data within the software, such as maximum occupancy, air changes, etc.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCSPACE</ids:simpleValue>
+          </ids:name>
+          <ids:predefinedType>
+            <ids:simpleValue>SPACE</ids:simpleValue>
+          </ids:predefinedType>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Abitabile</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCAREAMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Area per persona</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCIDENTIFIER" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Attiva carico di alimentazione di base</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCIDENTIFIER" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Attiva carico luce di base</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Cambiamenti d'aria all'ora</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCPOWERMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Carico alimentazione effettivo</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Carico alimentazione effettivo per area</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCPOWERMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Carico di alimentazione specificato</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Carico di alimentazione specificato per area</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCPOWERMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Carico luce effettivo</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Carico luce effettivo per area</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCPOWERMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Carico luce specificato</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Carico luce specificato per area</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCPOWERMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Carico raffreddamento di progetto</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCPOWERMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Carico riscaldamento di progetto</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCPOSITIVERATIOMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Contributo di illuminazione vano tecnico</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCPOWERMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Incremento calore latente per persona</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCPOWERMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Incremento calore percepito per persona</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCPOWERMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Incremento calore totale per persona</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCTEXT" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Informazioni sui ricambi d'aria</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCIDENTIFIER" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Metodo di ricambio d'aria</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Numero di persone</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Ricambio d'aria per area</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCVOLUMETRICFLOWRATEMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Ricambio d'aria per persona</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCIDENTIFIER" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Unità abitativa</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCIDENTIFIER" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Unità carico di alimentazione</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCIDENTIFIER" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Unità carico luce</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCIDENTIFIER" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Valori carico di riscaldamento</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCBOOLEAN" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Vano tecnico</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCTEXT" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Zona</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Zone" identifier="ZN.01">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCZONE</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCIDENTIFIER" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Tipo di impianto</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Punto di regolazione deumidificazione</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCTHERMODYNAMICTEMPERATUREMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Punto di regolazione raffreddamento</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCTHERMODYNAMICTEMPERATUREMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Punto di regolazione riscaldamento</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Punto di regolazione umidificazione</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="HVAC" identifier="HVAC.01" description="Data relating to plant characteristics:&#xA;- combustion generators (gas, diesel, biomass, etc.)&#xA;- heat pumps&#xA;- (cogenerators)&#xA;- (district heating)" instructions="- Import the shared HVAC parameters into the model in the “Data” section of “Mechanical Equipment.”&#xA;- Export the generator as IFC.BOILER.&#xA;- Make sure you have filled in all the data necessary to define the characteristics of the generator type.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:entity>
+          <ids:name>
+            <ids:simpleValue>IFCBOILER</ids:simpleValue>
+          </ids:name>
+        </ids:entity>
+      </ids:applicability>
+      <ids:requirements>
+        <ids:property dataType="IFCTEXT" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Modello</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCTEXT" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Combustibile</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCTEXT" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Fluido</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCTEXT" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Descrizione</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCPOWERMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Potenza focolare nominale</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCPOWERMEASURE" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Potenza focolare a carico intermedio</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Rendimento a carico nominale (%)</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Rendimento al 30% del carico nominale (%)</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Efficienza energetica stagionale del riscaldamento ACS</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Efficienza energetica stagionale del riscaldamento d'ambiente (%)</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCREAL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Efficienza energetica stagionale del riscaldamento d'ambiente (%)</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCTEXT" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Tipologia bruciatore</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCLABEL" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Scheda tecnica</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+        <ids:property dataType="IFCTEXT" cardinality="required">
+          <ids:propertySet>
+            <ids:simpleValue>Dati</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>Scheda tecnica ACDAT</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:requirements>
+    </ids:specification>
+    <ids:specification ifcVersion="IFC4X3_ADD2" name="Energy bills" identifier="EB.01" description="List of energy consumption (heating, lighting, etc.) for the building.&#xA;Link to shared ACDat space where all bills will be stored." instructions="Enter the shared parameter “EnergyBills” in “Project Information - Energy Analysis.”&#xA;Enter links related to energy bills.">
+      <ids:applicability minOccurs="1" maxOccurs="unbounded">
+        <ids:property dataType="IFCTEXT">
+          <ids:propertySet>
+            <ids:simpleValue>Analisi energetica</ids:simpleValue>
+          </ids:propertySet>
+          <ids:baseName>
+            <ids:simpleValue>EnergyBills</ids:simpleValue>
+          </ids:baseName>
+        </ids:property>
+      </ids:applicability>
+      <ids:requirements />
+    </ids:specification>
+  </ids:specifications>
+</ids:ids>
