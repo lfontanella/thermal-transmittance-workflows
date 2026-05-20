@@ -1,0 +1,46 @@
+cff-version: 1.2.0
+title: "Thermal Transmittance Workflows"
+message: "If you use this repository, please cite it as below."
+type: software
+
+authors:
+  - family-names: Fontanella
+    given-names: Luca
+    email: luca.fontanella@gmail.com
+    affiliation: "Università Iuav di Venezia"
+
+repository-code: "https://github.com/lfontanella/thermal-transmittance-workflows"
+
+abstract: >
+  Proprietary and open-source workflows for BIM/openBIM-based thermal
+  transmittance requirement analysis. The repository documents a Revit/Dynamo
+  proprietary workflow and an IDS/Python/JSON open-source workflow developed
+  as part of a PhD research project on BIM, openBIM and thermal performance
+  analysis.
+
+keywords:
+  - BIM
+  - openBIM
+  - IFC
+  - IDS
+  - Python
+  - Dynamo
+  - Revit
+  - thermal transmittance
+  - building performance
+  - energy performance
+  - regulatory requirements
+
+license: MIT
+version: "1.0.0"
+date-released: "2026-05-20"
+
+preferred-citation:
+  type: thesis
+  title: "Utilizzo della metodologia BIM (Building Information Modeling) e degli standard openBIM per le analisi e il monitoraggio delle prestazioni termiche di edifici storici"
+  authors:
+    - family-names: Fontanella
+      given-names: Luca
+  institution:
+    name: "Università Iuav di Venezia"
+  year: 2026
