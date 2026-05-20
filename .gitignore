@@ -1,0 +1,94 @@
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+pip-wheel-metadata/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---------------------------------------------------------------------------
+# Local / temporary system files
+# ---------------------------------------------------------------------------
+
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.temp
+*.bak
+*.backup
+*.log
+
+# ---------------------------------------------------------------------------
+# Credentials / private configuration
+# ---------------------------------------------------------------------------
+
+.env
+*.env
+settings.json
+secrets.*
+credentials.*
+config.local.*
+
+# ---------------------------------------------------------------------------
+# BIM / CAD files that may contain sensitive project data
+# ---------------------------------------------------------------------------
+
+*.rvt
+*.rfa
+*.rte
+*.ifc
+*.ifczip
+
+# Allow explicitly anonymized/example IFC files if needed
+!*sample*.ifc
+!*example*.ifc
+!*template*.ifc
+!*anonymized*.ifc
+
+# ---------------------------------------------------------------------------
+# Dynamo / Revit local backup files
+# ---------------------------------------------------------------------------
+
+*.dyn.bak
+*.dyf.bak
+*.rvt.bak
+*.rfa.bak
+
+# Dynamo local packages can be machine-specific
+packages/
+DynamoPackages/
+
+# ---------------------------------------------------------------------------
+# Excel / Office temporary files
+# ---------------------------------------------------------------------------
+
+~$*.xlsx
+~$*.xlsm
+~$*.xls
+~$*.docx
+~$*.pptx
+
+# ---------------------------------------------------------------------------
+# Generated reports / local outputs
+# ---------------------------------------------------------------------------
+
+output/
+outputs/
+results/
+reports/
+*.html
+*.csv
+
+# Allow explicit template/example CSV files if needed
+!*template*.csv
+!*example*.csv
+!*sample*.csv
